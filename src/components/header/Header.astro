@@ -1,0 +1,19 @@
+---
+import HeaderLink from "./HeaderLink.astro";
+import { SITE_TITLE } from "../../consts";
+import styles from "./Header.module.css";
+---
+
+<header class={styles["header-styled"]}>
+  <nav class={styles["header-nav"]}>
+    <h2><a href="/">{SITE_TITLE}</a></h2>
+    <div class="internal-links">
+      <HeaderLink href="/">Home</HeaderLink>
+      <HeaderLink href="/blog">Blog</HeaderLink>
+      <HeaderLink href="/about">About</HeaderLink>
+    </div>
+    <div class="social-links">
+      <img src="public/taza.png" />
+    </div>
+  </nav>
+</header>
