@@ -1,0 +1,65 @@
+---
+import styles from "./Card.module.css";
+
+interface CardProps {
+  title?: string;
+  img?: string;
+  description: string;
+  date: string;
+  url: string;
+  tags: string[];
+}
+
+const {
+  title = "Título por defecto",
+  img,
+  description,
+  date,
+  url,
+  tags,
+} = Astro.props as CardProps;
+
+const fecha = new Date(date);
+const fechaFormateada = fecha.toLocaleDateString("es-ES", {
+  day: "numeric",
+  month: "long",
+  year: "numeric",
+});
+---
+
+<a href={`/blog/${url}`} class={styles["card-link-wrapper"]}>
+  <article class={styles["card-article"]}>
+    <div class={styles["card-text-content"]}>
+      <header>
+        <h2>
+          {title}
+        </h2>
+      </header>
+
+      <p>{description}</p>
+
+      <footer>
+        <div class={styles["card-tag-list"]}>
+          {
+            tags.map((t) => {
+              return (
+                <div class={`${styles["card-tag"]} ${styles[`tag-${t}`]}`}>
+                  {t}
+                </div>
+              );
+            })
+          }
+        </div>
+        <small class={styles["card-small"]}> {fechaFormateada} </small>
+      </footer>
+    </div>
+
+    <figure class={styles["card-figure"]}>
+      <img
+        class={styles["card-img"]}
+        src={img}
+        alt="Ilustración de personaje con capucha y cuernos estilo Dungeons & Dragons"
+      />
+    </figure>
+  </article>
+</a>
