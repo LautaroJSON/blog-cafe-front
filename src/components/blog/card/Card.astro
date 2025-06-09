@@ -6,6 +6,8 @@ interface CardProps {
   img?: string;
   description: string;
   date: string;
+  url: string;
+  tags: string[];
 }
 
 const {
@@ -13,6 +15,8 @@ const {
   img,
   description,
   date,
+  url,
+  tags,
 } = Astro.props as CardProps;
 
 const fecha = new Date(date);
@@ -23,35 +27,39 @@ const fechaFormateada = fecha.toLocaleDateString("es-ES", {
 });
 ---
 
-<article class={styles["card-article"]}>
-  <div class={styles["card-text-content"]}>
-    <header>
-      <h2>
-        {title}
-      </h2>
-    </header>
+<a href={`/blog/${url}`} class={styles["card-link-wrapper"]}>
+  <article class={styles["card-article"]}>
+    <div class={styles["card-text-content"]}>
+      <header>
+        <h2>
+          {title}
+        </h2>
+      </header>
 
-    <p class={styles["card-p"]}>{description}</p>
+      <p>{description}</p>
 
-    <footer>
-      <div class={styles["card-tag-list"]}>
-        <div class={`${styles["card-tag"]} ${styles["tag-class"]}`}>Clase</div>
-        <div class={`${styles["card-tag"]} ${styles["tag-think"]}`}>
-          Reflexion
+      <footer>
+        <div class={styles["card-tag-list"]}>
+          {
+            tags.map((t) => {
+              return (
+                <div class={`${styles["card-tag"]} ${styles[`tag-${t}`]}`}>
+                  {t}
+                </div>
+              );
+            })
+          }
         </div>
-        <div class={`${styles["card-tag"]} ${styles["tag-review"]}`}>
-          Review
-        </div>
-      </div>
-      <small class={styles["card-small"]}> {fechaFormateada} </small>
-    </footer>
-  </div>
+        <small class={styles["card-small"]}> {fechaFormateada} </small>
+      </footer>
+    </div>
 
-  <figure class={styles["card-figure"]}>
-    <img
-      class={styles["card-img"]}
-      src={img}
-      alt="Ilustración de personaje con capucha y cuernos estilo Dungeons & Dragons"
-    />
-  </figure>
-</article>
+    <figure class={styles["card-figure"]}>
+      <img
+        class={styles["card-img"]}
+        src={img}
+        alt="Ilustración de personaje con capucha y cuernos estilo Dungeons & Dragons"
+      />
+    </figure>
+  </article>
+</a>

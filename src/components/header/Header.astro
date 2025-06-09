@@ -2,18 +2,35 @@
 import HeaderLink from "./HeaderLink.astro";
 import { SITE_TITLE } from "../../consts";
 import styles from "./Header.module.css";
+
+interface Props {
+  inBlog?: boolean;
+}
+
+const { inBlog = false } = Astro.props as Props;
 ---
 
-<header class={styles["header-styled"]}>
+<header
+  class:list={[styles["header-styled"], inBlog && styles["header-in-blog"]]}
+>
   <nav class={styles["header-nav"]}>
     <h2><a href="/">{SITE_TITLE}</a></h2>
     <div class="internal-links">
-      <HeaderLink href="/">Home</HeaderLink>
       <HeaderLink href="/blog">Blog</HeaderLink>
       <HeaderLink href="/about">About</HeaderLink>
     </div>
     <div class="social-links">
       <img src="/taza.png" />
     </div>
+    {
+      inBlog && (
+        <img
+          src="/back-arrow.svg"
+          alt=""
+          width="50px"
+          class={styles["svg-color"]}
+        />
+      )
+    }
   </nav>
 </header>

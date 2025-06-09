@@ -1,0 +1,9 @@
+.sidebar {
+  width: 400px;
+  height: 500px;
+  background-color: black;
+  margin-top: 44px;
+
+  border-radius: 12px 120px 12px 12px;
+  border: 8px solid var(--bg);
+}

@@ -29,19 +29,11 @@ const { title, description, image = "/blog-placeholder-1.jpg" } = Astro.props;
 <meta name="generator" content={Astro.generator} />
 
 <!-- Font preloads -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link
-  rel="preload"
-  href="/fonts/MesloLGS NF Bold.ttf"
-  as="font"
-  type="font/ttf"
-  crossorigin
-/>
-<link
-  rel="preload"
-  href="/fonts/MesloLGS NF Regular.ttf"
-  as="font"
-  type="font/ttf"
-  crossorigin
+  href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@0,100..700;1,100..700&display=swap"
+  rel="stylesheet"
 />
 
 <!-- Canonical URL -->

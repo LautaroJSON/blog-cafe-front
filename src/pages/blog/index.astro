@@ -1,40 +1,55 @@
 ---
 import Layout from "../../layouts/BaseLayouts.astro";
-import { getCollection } from "astro:content";
-import FormattedDate from "../../components/FormattedDate.astro";
 import Card from "../../components/blog/card/Card.astro";
+import { getCollection } from "astro:content";
+// import Sidebar from "../../components/sidebar/Sidebar.astro";
 
 const posts = (await getCollection("blog")).sort(
   (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
 );
+
+console.log(posts[0].data);
 ---
 
 <Layout>
-  <section class="seccion-usuarios">
-    <ul>
-      {
-        posts.map((post) => (
-          <li>
+  <div class="main-container">
+    <section class="section-container">
+      <div class="list-container">
+        {
+          posts.map((post) => (
             <Card
               title={post.data.title}
               img={post.data.heroImage}
               description={post.data.description}
               date={post.data.pubDate}
+              url={post.id}
+              tags={post.data.tags}
             />
-          </li>
-        ))
-      }
-    </ul>
-  </section>
+          ))
+        }
+      </div>
+    </section>
+    <!-- <Sidebar /> -->
+  </div>
 </Layout>
 
 <style>
-  ul {
+  .main-container {
+    min-height: 393px;
+    /* display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 12rem; */
+  }
+
+  .list-container {
     display: flex;
-    margin-left: 14rem;
+    align-items: center;
     flex-direction: column;
-    padding: 0px;
-    gap: 10px;
+    gap: 1.5rem;
+
+    padding: 1rem;
+    width: 100%;
   }
 
   li {
@@ -52,7 +67,7 @@ const posts = (await getCollection("blog")).sort(
     }
   }
 
-  .seccion-usuarios {
+  .section-container {
     animation: slideInRight 0.4s ease-out;
   }
 </style>

@@ -6,43 +6,35 @@
 
 :root {
   --bg: #212121;
-  --font-color: #ececec;
-  --font-color-p: #afafaf;
+  --font-color: white;
+  --font-color-p: #ffffff;
   --gray-gradient: #212121;
   /* --font-color: white; */
+  font-family: "IBM Plex Sans", sans-serif;
+  font-optical-sizing: auto;
 }
-@font-face {
-  font-family: "Meslo";
-  src: url("/fonts/MesloLGS NF Bold.ttf") format("ttf");
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
-@font-face {
-  font-family: "Meslo";
-  src: url("/fonts/MesloLGS NF Regular.ttf") format("tff");
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
+
 html {
   overflow-y: scroll;
+  scroll-behavior: smooth;
 }
 
 body::-webkit-scrollbar {
-  display: none; /* Chrome, Safari */
+  display: none;
 }
 
 body {
   margin: 0;
   padding: 0;
 
-  font-family: "Meslo", sans-serif;
-  background: radial-gradient(
+  font-family: "IBM Plex Sans", sans-serif;
+  background: black;
+  background-image: radial-gradient(
     circle,
     rgba(23, 23, 23, 1) 0%,
     rgba(10, 10, 10, 1) 100%
   );
+
   color: var(--font-color);
   font-size: 20px;
 }
@@ -56,12 +48,18 @@ main {
 
 h1,
 h2 {
-  font-size: 1.5rem;
-  line-height: 2rem;
-  margin: 0px;
+  /* margin: 0px; */
 }
 
 p {
-  font-size: 1.2rem;
+  margin-top: 24px;
+  margin-bottom: 24px;
+  font-size: 20px;
   color: var(--font-color-p);
+}
+
+hr {
+  border: 0px;
+
+  border-bottom: 1px solid rgba(255, 255, 255, 0.322);
 }

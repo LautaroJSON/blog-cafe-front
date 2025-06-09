@@ -1,17 +1,15 @@
 .header-styled {
   margin: 0;
-  padding: 0px 14rem;
-
   background-color: #030303;
+  border-bottom: 2px solid #262626;
 
-  border-bottom: 2px solid;
-  border-color: #262626;
+  transition: all 0.5s ease;
 }
 
 .header-nav {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .header-nav a {
@@ -23,4 +21,25 @@
 .header-nav a.active {
   text-decoration: none;
   border-bottom-color: var(--accent);
+}
+
+.header-in-blog {
+  animation: slideHeaderLeft 1s ease-in-out forwards;
+}
+
+.svg-color {
+  color: red;
+  background-color: red;
+}
+
+@keyframes slideHeaderLeft {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translate(-95%);
+    border-radius: 0px 35px 35px 0px;
+    border-right: 2px solid #262626;
+    height: 100px;
+  }
 }
