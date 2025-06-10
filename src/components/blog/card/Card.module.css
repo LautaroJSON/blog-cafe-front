@@ -2,8 +2,6 @@
   display: flex;
   width: fit-content;
   height: fit-content;
-  /* max-height: 260px; */
-  /* column-gap: 34px; */
 
   background-color: #000000;
   background: radial-gradient(
@@ -31,14 +29,14 @@
 
 .card-text-content p {
   /* height: 100px; */
-  width: 500px;
+  /* width: 500px; */
 
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
 .card-text-content header h2 {
-  width: 600px;
+  max-width: 600px;
 }
 
 .card-tag-list {
@@ -94,4 +92,26 @@
 
 .card-link-wrapper:visited .card-text-content header h2 {
   color: violet;
+}
+
+@media (max-width: 768px) {
+  .card-article {
+    flex-direction: column-reverse;
+    align-items: center;
+  }
+
+  .card-img {
+    max-width: 100%;
+    width: 100%;
+    height: auto;
+  }
+
+  .card-text-content {
+    padding: 0px 30px 14px 30px;
+  }
+
+  .card-text-content p,
+  .card-text-content header h2 {
+    width: 100%;
+  }
 }
