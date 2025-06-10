@@ -1,3 +1,63 @@
 ---
+import Layout from "../layouts/BaseLayouts.astro";
+import Card from "@components/blog/card/Card.astro";
+import { getCollection } from "astro:content";
 
+const posts = (await getCollection("blog")).sort(
+  (a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf()
+);
 ---
+
+<Layout>
+  <div class="main-container">
+    <section class="section-container">
+      <div class="list-container">
+        {
+          posts.map((post) => (
+            <Card
+              title={post.data.title}
+              img={post.data.heroImage}
+              description={post.data.description}
+              date={post.data.pubDate}
+              url={post.id}
+              tags={post.data.tags}
+            />
+          ))
+        }
+      </div>
+    </section>
+  </div>
+</Layout>
+
+<style>
+  .main-container {
+    padding: 12px;
+  }
+
+  .list-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 100%;
+  }
+
+  li {
+    list-style: none;
+  }
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0.5;
+      transform: translateX(-24%);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .section-container {
+    animation: slideInRight 0.4s ease-out;
+  }
+</style>

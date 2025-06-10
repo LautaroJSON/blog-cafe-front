@@ -2,6 +2,7 @@
   display: flex;
   width: fit-content;
   height: fit-content;
+  position: relative;
 
   background-color: #000000;
   background: radial-gradient(
@@ -17,6 +18,22 @@
 
   transition: all 0.2s ease-in-out;
   cursor: pointer;
+}
+
+.card-article::after {
+  content: "NEW";
+  position: absolute;
+  right: -12px;
+  top: 12px;
+  padding: 0px 12px;
+  background-color: #fcde01;
+  color: #000000;
+  font-weight: 700;
+  transform: rotateZ(40deg);
+}
+
+.no-after::after {
+  display: none;
 }
 
 .card-article:hover {
