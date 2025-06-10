@@ -28,7 +28,7 @@ const fechaFormateada = fecha.toLocaleDateString("es-ES", {
 ---
 
 <a href={`/blog/${url}`} class={styles["card-link-wrapper"]}>
-  <article class={styles["card-article"]}>
+  <article class={styles["card-article"]} data-text="" date-real-date={date}>
     <div class={styles["card-text-content"]}>
       <header>
         <h2>
@@ -50,7 +50,9 @@ const fechaFormateada = fecha.toLocaleDateString("es-ES", {
             })
           }
         </div>
-        <small class={styles["card-small"]}> {fechaFormateada} </small>
+        <small class={styles["card-small"]}>
+          {fechaFormateada}
+        </small>
       </footer>
     </div>
 
@@ -63,3 +65,20 @@ const fechaFormateada = fecha.toLocaleDateString("es-ES", {
     </figure>
   </article>
 </a>
+
+<script>
+  const ahora = new Date();
+  const unaSemana = 7 * 24 * 60 * 60 * 1000;
+
+  document.querySelectorAll("article").forEach((article) => {
+    const fechaAttr = article.getAttribute("date-real-date");
+    if (!fechaAttr) return;
+
+    const fecha = new Date(fechaAttr);
+    const diferencia = ahora.getTime() - fecha.getTime();
+
+    if (diferencia <= unaSemana) {
+      article.setAttribute("data-text", "NEW");
+    }
+  });
+</script>
