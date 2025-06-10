@@ -1,9 +1,8 @@
 ---
 import type { CollectionEntry } from "astro:content";
-import BaseHead from "../components/BaseHead.astro";
-import Header from "../components/header/Header.astro";
-import Footer from "../components/Footer.astro";
-import FormattedDate from "../components/FormattedDate.astro";
+import BaseHead from "@components/BaseHead.astro";
+import Header from "@components/header/Header.astro";
+import Footer from "@components/Footer.astro";
 
 type Props = CollectionEntry<"blog">["data"];
 
@@ -13,67 +12,36 @@ const { title, description, pubDate, heroImage } = Astro.props;
 <html lang="en">
   <head>
     <BaseHead title={title} description={description} />
-    <style>
-      main {
-        width: calc(100% - 2em);
-        max-width: 100%;
-        margin: 0;
-      }
-      .hero-image {
-        width: 100%;
-      }
-      .hero-image img {
-        display: block;
-        margin: 0 auto;
-        border-radius: 12px;
-        box-shadow: var(--box-shadow);
-      }
-      .prose {
-        width: 720px;
-        max-width: calc(100% - 2em);
-        margin: auto;
-        padding: 1em;
-        color: rgb(var(--gray-dark));
-      }
-      .title {
-        margin-bottom: 1em;
-        padding: 1em 0;
-        text-align: center;
-        line-height: 1;
-      }
-      .title h1 {
-        margin: 0 0 0.5em 0;
-      }
-      .date {
-        margin-bottom: 0.5em;
-        color: rgb(var(--gray));
-      }
-      .last-updated-on {
-        font-style: italic;
-      }
-    </style>
   </head>
 
   <body>
     <Header />
     <main>
       <article>
-        <a href="/blog" class="a-tag"> ⬅️ Volver</a>
-        <div class="prose2">
-          <div class="title2">
-            <h1 id="top">{title}</h1>
-            <div class="date2">
-              <FormattedDate date={pubDate} />
+        <a href="/blog" class="blog-a-tag"> ⬅️ Volver</a>
+        <div class="blog-prose">
+          <div class="blog-title">
+            <h1 id="blog-back-button-id">{title}</h1>
+            <div class="blog-date">
+              <time datetime={pubDate.toISOString()}>
+                {
+                  pubDate.toLocaleDateString("en-us", {
+                    year: "numeric",
+                    month: "short",
+                    day: "numeric",
+                  })
+                }
+              </time>
             </div>
             <hr />
           </div>
           <div class="hero-image">
-            {heroImage && <img src={heroImage} alt="" />}
+            {heroImage && <img src={heroImage} />}
           </div>
 
           <slot />
-          <a href="#top" class="a-tag">
-            <div class="go-top">Volver al inicio</div>
+          <a href="#blog-back-button-id" class="blog-a-tag">
+            <div class="blog-go-top-button">Volver al inicio</div>
           </a>
         </div>
       </article>
@@ -83,11 +51,18 @@ const { title, description, pubDate, heroImage } = Astro.props;
 </html>
 
 <style>
-  .a-tag {
+  main {
+    width: calc(100% - 2em);
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .blog-a-tag {
     text-decoration: none;
     color: inherit;
   }
-  .go-top {
+
+  .blog-go-top-button {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -110,18 +85,20 @@ const { title, description, pubDate, heroImage } = Astro.props;
     background-color: aliceblue;
     margin: auto;
   }
-  .prose2 {
+
+  .blog-prose {
     max-width: 960px;
   }
-  .title2 {
+
+  .blog-title {
     text-align: start;
   }
 
-  .date2 {
+  .blog-date {
     margin-bottom: 24px;
   }
 
-  .title2 h1 {
+  .blog-title h1 {
     margin-bottom: 24px;
   }
   main {
@@ -143,9 +120,19 @@ const { title, description, pubDate, heroImage } = Astro.props;
     border-color: #080808;
   }
 
-  img {
+  .hero-image img {
     width: 100%;
-
     max-height: 250px;
+  }
+
+  @media (max-width: 768px) {
+    main {
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    article {
+      padding: 3rem;
+    }
   }
 </style>
