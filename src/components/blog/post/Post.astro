@@ -18,7 +18,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
     <Header />
     <main>
       <article>
-        <a href="/blog" class="blog-a-tag"> ⬅️ Volver</a>
+        <a href="/blog" class="blog-a-tag blog-back-butto"> ⬅️ Volver</a>
         <div class="blog-prose">
           <div class="blog-title">
             <h1 id="blog-back-button-id">{title}</h1>
@@ -64,8 +64,11 @@ const { title, description, pubDate, heroImage } = Astro.props;
 
   .blog-go-top-button {
     display: flex;
+    justify-self: center;
     justify-content: center;
     align-items: center;
+
+    margin: 2rem;
 
     width: 200px;
     height: 75px;
@@ -81,9 +84,6 @@ const { title, description, pubDate, heroImage } = Astro.props;
 
     border: 4px solid;
     border-color: #080808;
-
-    background-color: aliceblue;
-    margin: auto;
   }
 
   .blog-prose {
@@ -112,7 +112,7 @@ const { title, description, pubDate, heroImage } = Astro.props;
   article {
     width: 846px;
 
-    padding: 5rem;
+    padding: 5rem 5rem 0 5rem;
     background-color: #000000;
 
     border-left: 4px solid;
@@ -125,6 +125,9 @@ const { title, description, pubDate, heroImage } = Astro.props;
     max-height: 250px;
   }
 
+  .blog-back-butto {
+  }
+
   @media (max-width: 768px) {
     main {
       width: 100%;
@@ -132,7 +135,12 @@ const { title, description, pubDate, heroImage } = Astro.props;
     }
 
     article {
-      padding: 3rem;
+      padding: 3rem 1rem 1rem 1rem;
+    }
+
+    .blog-go-top-button {
+      font-size: 1.4rem;
+      margin: 1rem;
     }
   }
 </style>
