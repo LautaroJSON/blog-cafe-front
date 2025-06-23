@@ -27,15 +27,7 @@
 }
 
 @media (max-width: 768px) {
-  .header-styled {
-    /* padding: 0.5rem 0px; */
-  }
   .header-icon {
     display: none;
-  }
-
-  .header-title {
-    /* font-size: 1rem; */
-    /* display: none; */
   }
 }
