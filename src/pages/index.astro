@@ -24,7 +24,7 @@ const posts = (await getCollection("blog")).sort(
                   url={post.id}
                   tags={post.data.tags}
                 />
-              ) : <></div>
+              ) : <></>
           )
         }
       </div>
