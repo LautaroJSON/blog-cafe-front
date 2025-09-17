@@ -1,0 +1,54 @@
+---
+title: "La importancia de las estructuras de datos: ejemplo con HashMap en TypeScript"
+description: "Por qué dominar estructuras de datos es clave para ingenieros de software y cómo resolver problemas prácticos usando HashMap en TypeScript."
+pubDate: "Sep 16 2025"
+heroImage: "/blog-placeholder-4.jpg"
+tags: ["Análisis"]
+show: true
+---
+
+# La importancia de las estructuras de datos: ejemplo con HashMap en TypeScript
+
+Como ingeniero de software, **conocer las estructuras de datos es fundamental**. No solo ayuda a escribir código más eficiente, sino que también permite resolver problemas de forma más clara y optimizada. Entre estas estructuras, los **hashmaps** (o mapas) son de los más versátiles y poderosos.
+
+## ¿Por qué son importantes las estructuras de datos?
+
+Las estructuras de datos nos permiten:
+
+- Organizar información de manera eficiente.
+- Mejorar la velocidad de búsqueda, inserción y eliminación.
+- Optimizar algoritmos, evitando complejidades innecesarias.
+- Facilitar la solución de problemas del mundo real con código limpio y mantenible.
+
+Incluso en lenguajes modernos como TypeScript, entender cómo funcionan estas estructuras te permite aprovecharlas al máximo.
+
+## HashMap: definición y uso
+
+Un **HashMap** es una estructura que almacena pares clave-valor y permite acceder a los datos en tiempo constante promedio (O(1)). Esto lo hace ideal para tareas como conteo de elementos, búsqueda rápida y agrupación de datos.
+
+En TypeScript podemos usar `Map` como implementación nativa de HashMap:
+
+```ts
+// Ejemplo: contar la cantidad de veces que aparece cada palabra en un array
+const palabras: string[] = [
+  "apple",
+  "banana",
+  "apple",
+  "orange",
+  "banana",
+  "apple",
+];
+
+const contador: Map<string, number> = new Map();
+
+for (const palabra of palabras) {
+  if (contador.has(palabra)) {
+    contador.set(palabra, contador.get(palabra)! + 1);
+  } else {
+    contador.set(palabra, 1);
+  }
+}
+
+console.log(contador);
+// Output: Map(3) { 'apple' => 3, 'banana' => 2, 'orange' => 1 }
+```

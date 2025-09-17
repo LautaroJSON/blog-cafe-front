@@ -13,16 +13,19 @@ const posts = (await getCollection("blog")).sort(
     <section class="section-container">
       <div class="list-container">
         {
-          posts.map((post) => (
-            <Card
-              title={post.data.title}
-              img={post.data.heroImage}
-              description={post.data.description}
-              date={post.data.pubDate}
-              url={post.id}
-              tags={post.data.tags}
-            />
-          ))
+          posts.map(
+            (post) =>
+              post.data.show ?? (
+                <Card
+                  title={post.data.title}
+                  img={post.data.heroImage}
+                  description={post.data.description}
+                  date={post.data.pubDate}
+                  url={post.id}
+                  tags={post.data.tags}
+                />
+              )
+          )
         }
       </div>
     </section>
